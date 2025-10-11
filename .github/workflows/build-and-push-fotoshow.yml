@@ -68,6 +68,7 @@ jobs:
         with:
           context: ./fotoshow
           file: ./fotoshow/src/main/docker/Dockerfile.jvm
+          no-cache: true
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
