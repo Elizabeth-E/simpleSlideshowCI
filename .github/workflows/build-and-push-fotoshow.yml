@@ -26,6 +26,8 @@ jobs:
         with:
           repository: mirkarlar/fotoshow
           path: fotoshow
+          token: ${{ secrets.CHECKOUT_PAT }}
+          fetch-depth: 1
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
