@@ -2,9 +2,6 @@ name: Build and Push fotoshow Image
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ main, master ]
-    tags: [ "v*", "release-*" ]
 
 permissions:
   contents: read
@@ -28,6 +25,23 @@ jobs:
           path: fotoshow
           token: ${{ secrets.CHECKOUT_PAT }}
           fetch-depth: 1
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Maven build (package)
+        if: ${{ hashFiles('fotoshow/pom.xml') != '' }}
+        working-directory: fotoshow
+        run: mvn -B -ntp -DskipTests package
+
+      - name: Maven test
+        if: ${{ hashFiles('fotoshow/pom.xml') != '' }}
+        working-directory: fotoshow
+        run: mvn -B -ntp test
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
