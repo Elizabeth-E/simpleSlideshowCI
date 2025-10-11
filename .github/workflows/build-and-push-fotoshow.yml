@@ -17,7 +17,6 @@ jobs:
     steps:
       - name: Checkout pipeline repo
         uses: actions/checkout@v4
-
       - name: Checkout mirkarlar/fotoshow source
         uses: actions/checkout@v4
         with:
@@ -68,6 +67,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./fotoshow
+          file: ./fotoshow/src/main/docker/Dockerfile.jvm
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
