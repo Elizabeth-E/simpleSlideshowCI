@@ -54,7 +54,7 @@ jobs:
           name: fotoshow-workspace
           path: fotoshow
 
-   create-image:
+  create-image:
     name: Create image (build only)
     runs-on: ubuntu-latest
     needs: build
