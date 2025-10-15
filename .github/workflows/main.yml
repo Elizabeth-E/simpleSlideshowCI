@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'
+          java-version: '21'
           cache: maven
 
       - name: Maven build (package)
@@ -48,6 +48,7 @@ jobs:
             mkdir -p fotoshow/build/quarkus-app
             cp -a fotoshow/target/quarkus-app/. fotoshow/build/quarkus-app/
           fi
+
       - name: Upload fotoshow workspace
         uses: actions/upload-artifact@v4
         with:
